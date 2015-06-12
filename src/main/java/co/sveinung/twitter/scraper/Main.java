@@ -1,4 +1,4 @@
-package com.usebutton.twitter.scraper;
+package co.sveinung.twitter.scraper;
 
 import twitter4j.*;
 
