@@ -8,6 +8,10 @@ import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributeView;
+import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,6 +47,11 @@ public class ImageProcessor implements TwitterScraper.Processor {
                 ReadableByteChannel rbc = Channels.newChannel(imageUrl.openStream());
                 FileOutputStream fos = new FileOutputStream(out);
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+
+                BasicFileAttributeView attributes = Files.getFileAttributeView(Paths.get(out.getAbsolutePath()), BasicFileAttributeView.class);
+                FileTime time = FileTime.fromMillis(tweet.getCreatedAt().getTime());
+                attributes.setTimes(time, time, time);
+
             } catch (Exception e) {
                 System.err.println("Could not download: " + url);
                 e.printStackTrace();
