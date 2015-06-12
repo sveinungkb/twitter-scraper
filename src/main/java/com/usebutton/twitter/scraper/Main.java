@@ -7,8 +7,8 @@ import twitter4j.*;
  */
 public class Main {
 
-    private static final String CONSUMER_KEY = "HutP5WjCRt1uZtpgvmmfmA";
-    private static final String CONSUMER_SECRET = "NozCosLlp9xF2CV0DbQgoUgSGqXN4SWt8NxPcW4H08";
+    private static final String CONSUMER_KEY = "your-key";
+    private static final String CONSUMER_SECRET = "your-secret";
 
     public static void main(String[] args) {
         try {
